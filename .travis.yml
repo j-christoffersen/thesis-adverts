@@ -16,7 +16,9 @@ script:
   - npm run test
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  - echo $TRAVIS_BRANCH;
+    if [ "$TRAVIS_BRANCH" == "master" ]; then
+    echo hello;
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     docker push jacksontchristo/adverts:v0;
     fi
