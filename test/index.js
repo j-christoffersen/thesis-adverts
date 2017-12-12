@@ -12,4 +12,7 @@ tape('GET /', (t) => {
       t.equal(res.status, 200, 'should return 200 OK');
       t.end();
     })
+    .catch((err) => {
+      t.end(err);
+    })
 })
