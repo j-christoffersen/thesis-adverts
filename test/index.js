@@ -4,7 +4,7 @@ const axios = require('axios');
 tape('a simple test', (t) => {
   t.equal(2 + 2, 4, 'should pass');
   t.end();
-})
+});
 
 tape('GET /', (t) => {
   axios.get('/')
@@ -14,5 +14,5 @@ tape('GET /', (t) => {
     })
     .catch((err) => {
       t.end(err);
-    })
-})
+    });
+});
