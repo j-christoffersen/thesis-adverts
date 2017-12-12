@@ -9,6 +9,8 @@ services:
   - docker
 
 before_install:
+  - echo $TRAVIS_BRANCH
+  - echo $GIT_BRANCH
   - docker build -t jacksontchristo/adverts:v0 .
   - docker run -p 80:80 -d jacksontchristo/adverts:v0
 
@@ -16,9 +18,7 @@ script:
   - npm run test
 
 after_success:
-  - echo $TRAVIS_BRANCH;
-    if [ "$TRAVIS_BRANCH" == "master" ]; then
-    echo hello;
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     docker push jacksontchristo/adverts:v0;
     fi
