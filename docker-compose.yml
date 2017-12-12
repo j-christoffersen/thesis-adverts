@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    image: jacksontchristo/adverts:v0
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+networks:
+  webnet:

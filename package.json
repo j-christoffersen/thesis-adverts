@@ -4,8 +4,9 @@
   "description": "The project description",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   },
   "homepage": "https://github.com/j-christoffersen/thesis-adverts#readme",
   "devDependencies": {
-    "nodemon": "^1.12.5"
+    "axios": "^0.17.1",
+    "nodemon": "^1.12.5",
+    "tape": "^4.8.0"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
