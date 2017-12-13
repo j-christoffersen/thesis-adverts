@@ -7,13 +7,13 @@ exports.up = knex => (
     })
     .createTable('adverts', (table) => {
       table.increments('id').primary();
-      table.string('name');
-      table.integer('advertiserId').unique().references('advertisers.id');
+      table.text('body');
+      table.integer('advertiserId').references('advertisers.id');
     })
 );
 
 exports.down = knex => (
   knex.schema
-    .dropTable('advers')
+    .dropTable('adverts')
     .dropTable('advertisers')
 );
