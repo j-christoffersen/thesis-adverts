@@ -4,6 +4,8 @@ require('dotenv').config();
 
 const controller = require('./controllers');
 
+const JsonHeaders = { 'Content-Type': 'application/json' };
+
 const service = express();
 
 service.use(bodyParser.json());
@@ -12,6 +14,11 @@ service.route('/')
   .get((req, res) => {
     res.send('sah, world');
   });
+
+service.use((req, res, next) => {
+  res.set(JsonHeaders);
+  next();
+});
 
 service.route('/adverts')
   .get(controller.Advert.read);

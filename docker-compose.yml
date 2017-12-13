@@ -10,5 +10,17 @@ services:
       - "80:80"
     networks:
       - webnet
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 
+    ports:
+      - "5432:5432"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
 networks:
   webnet:

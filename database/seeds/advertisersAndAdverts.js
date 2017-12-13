@@ -1,7 +1,10 @@
 
 exports.seed = knex => (
 
-  knex('advertisers').del()
+  knex('adverts').del()
+    .then(() => (
+      knex('advertisers').del()
+    ))
     .then(() => (
       knex('advertisers').insert([
         { id: 1, name: 'coke' },
@@ -9,9 +12,6 @@ exports.seed = knex => (
         { id: 3, name: 'rc' },
       ])
     ))
-    .then(() => {
-      knex('adverts').del();
-    })
     .then(() => (
       knex('adverts').insert([
         { id: 1, body: 'hey! buy some coke!', advertiserId: 1 },
@@ -22,8 +22,8 @@ exports.seed = knex => (
           id: 5,
           body:
           `Hey do you want to save the world while looking on fleek fellow millenials?
-          well in that case why don't you hoverboard on down to your local grocery and buy a case of Pepsi.
-          SWAG!`,
+well in that case why don't you hoverboard on down to your local grocery and buy a case of Pepsi.
+SWAG!`,
           advertiserId: 2,
         },
       ])
