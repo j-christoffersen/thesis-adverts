@@ -9,6 +9,9 @@ exports.seed = knex => (
         { id: 3, name: 'rc' },
       ])
     ))
+    .then(() => {
+      knex('adverts').del();
+    })
     .then(() => (
       knex('adverts').insert([
         { id: 1, body: 'hey! buy some coke!', advertiserId: 1 },
