@@ -13,7 +13,7 @@ before_install:
   - docker login -u jacksontchristo -p ${DOCKER_PASSWORD}
   - docker push jacksontchristo/adverts:v0
   - docker swarm init
-  - -E docker stack deploy -c docker-compose.yml adverts
+  - docker stack deploy -c docker-compose.yml adverts
   - sleep 10
   - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) sh -c 'node_modules/.bin/knex migrate:latest'
   - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) sh -c 'node_modules/.bin/knex seed:run'
