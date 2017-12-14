@@ -6,6 +6,8 @@ services:
       mode: global
       restart_policy:
         condition: on-failure
+    environment:
+      NODE_ENV: test
     ports:
       - "80:80"
     networks:
@@ -14,9 +16,12 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: 
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: adverts
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -24,3 +29,5 @@ services:
       - webnet
 networks:
   webnet:
+volumes:
+  pgdata:

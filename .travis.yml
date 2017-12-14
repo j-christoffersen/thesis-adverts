@@ -10,13 +10,14 @@ services:
 
 before_install:
   - docker build -t jacksontchristo/adverts:v0 .
-  - docker run -p 80:80 -d jacksontchristo/adverts:v0
+  - docker push jacksontchristo/adverts:v0
+  - docker swarm init
+  - docker stack deploy -c docker-compose.yml adverts
+  - sudo docker exec $(sudo docker container ls -f 'name=adverts_web' -q) node_modules/.bin/knex migrate:latest
+  - sudo docker exec $(sudo docker container ls -f 'name=adverts_web' -q) node_modules/.bin/knex seed:run
 
 script:
   - npm run test
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push jacksontchristo/adverts:v0;
-    fi
+  - echo YAY
