@@ -10,6 +10,7 @@ services:
 
 before_install:
   - docker build -t jacksontchristo/adverts:v0 .
+  - docker login -u jacksontchristo -p ${DOCKER_PASSWORD}
   - docker push jacksontchristo/adverts:v0
   - docker swarm init
   - docker stack deploy -c docker-compose.yml adverts
