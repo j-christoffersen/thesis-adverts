@@ -14,8 +14,9 @@ before_install:
   - docker push jacksontchristo/adverts:v0
   - docker swarm init
   - docker stack deploy -c docker-compose.yml adverts
-  - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) $PATH/knex migrate:latest
-  - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) $PATH/knex seed:run
+  - sleep 10
+  - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) node_modules/.bin/knex migrate:latest
+  - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) node_modules/.bin/knex seed:run
 
 script:
   - npm run test
