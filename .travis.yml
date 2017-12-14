@@ -14,7 +14,9 @@ before_install:
   - docker push jacksontchristo/adverts:v0
   - docker swarm init
   - docker stack deploy -c docker-compose.yml adverts
-  - sleep 10
+  - sleep 20
+  - docker container ls
+  - docker service ls
   - docker network inspect adverts_webnet
   - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) sh -c 'echo $NODE_ENV'
   - docker exec $(sudo docker container ls -f 'name=adverts_web' -q) sh -c 'node_modules/.bin/knex migrate:latest'
