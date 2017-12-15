@@ -20,7 +20,7 @@ tape('GET /', (t) => {
 });
 
 tape('GET /adverts', (t) => {
-  const expected = fixtures.adverts;
+  const expected = fixtures.adverts.map((adverts, i) => Object.assign(adverts, { id: i + 1 }));
 
   axios.get(`${host}/adverts`)
     .then((res) => {
@@ -34,12 +34,16 @@ tape('GET /adverts', (t) => {
 });
 
 tape('POST /adverts/:id/likes', (t) => {
-  axios.post(`${host}/adverts/5/likes?userId=5`)
+  axios.post(`${host}/adverts/5/likes`, { userId: 5 })
     .then((res) => {
       t.equal(res.status, 201, 'should return 201 created');
-      return new model.Advert({ id: 5 }).like().fetchOne().query({ where: { userId: 5 } })
+      return new model.Advert({ id: 5 }).likes().query({ where: { userId: 5 } }).fetchOne()
         .then((like) => {
           t.ok(like, 'should create a like in the db');
+          return like.destroy()
+            .catch(() => {
+              console.warn('data created by the test may not have been destroyed');
+            });
         });
     })
     .catch((err) => {
@@ -51,12 +55,16 @@ tape('POST /adverts/:id/likes', (t) => {
 });
 
 tape('POST /adverts/:id/clicks', (t) => {
-  axios.post(`${host}/adverts/5/clicks?userId=5`)
+  axios.post(`${host}/adverts/5/clicks`, { userId: 5 })
     .then((res) => {
       t.equal(res.status, 201, 'should return 201 created');
-      return new model.Advert({ id: 5 }).click().fetchOne().query({ where: { userId: 5 } })
-        .then((like) => {
-          t.ok(like, 'should create a click in the db');
+      return new model.Advert({ id: 5 }).clicks().query({ where: { userId: 5 } }).fetchOne()
+        .then((click) => {
+          t.ok(click, 'should create a click in the db');
+          return click.destroy()
+            .catch(() => {
+              console.warn('data created by the test may not have been destroyed');
+            });
         });
     })
     .catch((err) => {

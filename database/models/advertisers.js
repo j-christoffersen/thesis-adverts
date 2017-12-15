@@ -5,7 +5,7 @@ require('./adverts');
 const Advertiser = bookshelf.Model.extend({
   tableName: 'advertisers',
   adverts() {
-    return this.belongsTo('Advert');
+    return this.belongsTo('Advert', 'advertId');
   },
 });
 

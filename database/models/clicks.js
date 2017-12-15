@@ -2,11 +2,11 @@ const bookshelf = require('../bookshelf');
 
 require('./adverts');
 
-const Like = bookshelf.Model.extend({
-  tableName: 'likes',
+const Click = bookshelf.Model.extend({
+  tableName: 'clicks',
   adverts() {
     return this.belongsTo('Advert', 'advertId');
   },
 });
 
-module.exports = bookshelf.model('Like', Like);
+module.exports = bookshelf.model('Click', Click);
