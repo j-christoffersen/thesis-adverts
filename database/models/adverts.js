@@ -2,6 +2,7 @@ const bookshelf = require('../bookshelf');
 
 require('./advertisers');
 require('./likes');
+require('./clicks');
 
 const Advert = bookshelf.Model.extend({
   tableName: 'adverts',
@@ -10,6 +11,9 @@ const Advert = bookshelf.Model.extend({
   },
   likes() {
     return this.hasMany('Like', 'advertId');
+  },
+  clicks() {
+    return this.hasMany('Click', 'advertId');
   },
 });
 

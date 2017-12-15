@@ -6,6 +6,7 @@ const fixtures = require('../database/fixtures');
 
 const host = `http://127.0.0.1:${process.env.PORT || 80}`;
 
+const bookshelf = require('../database/bookshelf');
 const model = require('../database/models');
 
 tape('GET /', (t) => {
@@ -74,3 +75,9 @@ tape('POST /adverts/:id/clicks', (t) => {
       t.end();
     });
 });
+
+tape('teardown', (t) => {
+  bookshelf.knex.destroy();
+  t.end();
+});
+

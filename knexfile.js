@@ -27,4 +27,14 @@ module.exports = {
     },
   },
 
+  travis: {
+    client: 'pg',
+    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'127.0.0.1'}:${5432}/${'adverts'}`,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',
+    },
+  },
 };
