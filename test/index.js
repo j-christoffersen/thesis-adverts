@@ -1,8 +1,9 @@
 const tape = require('tape');
 const axios = require('axios');
+require('dotenv').config();
 const fixtures = require('../database/fixtures');
 
-const host = 'http://127.0.0.1';
+const host = `http://127.0.0.1:${process.env.PORT || 80}`;
 
 tape('a simple test', (t) => {
   t.equal(2 + 2, 4, 'should pass');
@@ -10,7 +11,7 @@ tape('a simple test', (t) => {
 });
 
 tape('GET /', (t) => {
-  axios.get('/')
+  axios.get(`${host}/adverts`)
     .then((res) => {
       t.equal(res.status, 200, 'should return 200 OK');
       t.end();
