@@ -1,5 +1,6 @@
 const tape = require('tape');
 const axios = require('axios');
+const fixtures = require('../database/fixtures');
 
 const host = 'http://127.0.0.1';
 
@@ -20,20 +21,7 @@ tape('GET /', (t) => {
 });
 
 tape('GET /adverts', (t) => {
-  const expected = [
-    { id: 1, body: 'hey! buy some coke!', advertiserId: 1 },
-    { id: 2, body: 'what\'s up everyone why don\'t you buy some pepsi', advertiserId: 2 },
-    { id: 3, body: 'screw pepsi way coke is better', advertiserId: 1 },
-    { id: 4, body: 'RC COLA UP IN THIS B', advertiserId: 3 },
-    {
-      id: 5,
-      body:
-      `Hey do you want to save the world while looking on fleek fellow millenials?
-well in that case why don't you hoverboard on down to your local grocery and buy a case of Pepsi.
-SWAG!`,
-      advertiserId: 2,
-    },
-  ];
+  const expected = fixtures.adverts;
 
   axios.get(`${host}/adverts`)
     .then((res) => {
