@@ -3,7 +3,7 @@ exports.up = knex => (
     .createTable('pageCategorizations', (table) => {
       table.increments('id').primary();
       table.integer('pageId');
-      table.integer('categoryId').references('categories.id');
+      table.integer('categoryId').references('categories.id').onDelete('CASCADE');
     })
 );
 

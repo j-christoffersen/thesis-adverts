@@ -7,7 +7,7 @@ exports.up = knex => (
     .createTable('adverts', (table) => {
       table.increments('id').primary();
       table.text('body');
-      table.integer('advertiserId').references('advertisers.id');
+      table.integer('advertiserId').references('advertisers.id').onDelete('CASCADE');
     })
 );
 

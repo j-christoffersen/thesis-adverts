@@ -7,6 +7,9 @@ const Advert = bookshelf.Model.extend({
   advertisers() {
     return this.belongsTo('Advertiser');
   },
+  likes() {
+    return this.hasMany('Like');
+  },
 });
 
 module.exports = bookshelf.model('Advert', Advert);

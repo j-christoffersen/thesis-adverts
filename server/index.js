@@ -26,8 +26,8 @@ service.route('/adverts')
 service.route('/adverts/:id/likes')
   .post(controller.Like.create);
 
-service.route('/adverts/:id/clicks')
-  .post(controller.Click.create);
+// service.route('/adverts/:id/clicks')
+//   .post(controller.Click.create);
 
 
 const port = process.env.PORT || 80;

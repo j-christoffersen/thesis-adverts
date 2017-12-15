@@ -6,8 +6,8 @@ exports.up = knex => (
     })
     .createTable('categorizations', (table) => {
       table.increments('id').primary();
-      table.integer('advertId').references('adverts.id');
-      table.integer('categoryId').references('categories.id');
+      table.integer('advertId').references('adverts.id').onDelete('CASCADE');
+      table.integer('categoryId').references('categories.id').onDelete('CASCADE');
     })
 );
 

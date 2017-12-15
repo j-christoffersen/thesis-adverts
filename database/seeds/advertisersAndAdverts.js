@@ -12,7 +12,12 @@ exports.seed = (knex) => {
     'pageCategorizations',
   ];
 
-  const deletes = tables.map(table => knex(table).del()).reverse();
+  const deletes = tables.map(table => (
+    knex(table).del()
+      .then(() => (
+        knex.raw(`ALTER SEQUENCE "${table}_id_seq" RESTART WITH 1`)
+      ))
+  )).reverse();
   const inserts = [];
   tables.forEach((table) => {
     if (table in fixtures) {
