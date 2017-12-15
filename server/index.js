@@ -23,6 +23,13 @@ service.use((req, res, next) => {
 service.route('/adverts')
   .get(controller.Advert.read);
 
+service.route('/adverts/:id/likes')
+  .post(controller.Like.create);
+
+service.route('/adverts/:id/clicks')
+  .post(controller.Click.create);
+
+
 const port = process.env.PORT || 80;
 
 service.listen(port, () => {

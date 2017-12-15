@@ -45,7 +45,7 @@ module.exports = {
     { id: 14, advertId: 10, categoryId: 4 },
   ],
 
-  clicks: [
+  likes: [
     { id: 1, userId: 1, advertId: 1 },
     { id: 2, userId: 1, advertId: 2 },
     { id: 3, userId: 2, advertId: 3 },
