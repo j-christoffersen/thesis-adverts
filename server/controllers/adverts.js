@@ -10,7 +10,7 @@ module.exports = {
       .count('*')
       .from('likes')
       .join('adverts', { 'likes.advertId': 'adverts.id' })
-      .where('likes.userId', '=', 1)
+      .where('likes.userId', '=', req.query.userId)
       .join('categorizations', { 'categorizations.advertId': 'adverts.id' })
       .groupBy('categorizations.categoryId')
       .as('userWeights');
