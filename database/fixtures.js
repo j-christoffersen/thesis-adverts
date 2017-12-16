@@ -45,6 +45,12 @@ module.exports = {
     { advertId: 10, categoryId: 4 },
   ],
 
+  pageCategorizations: [
+    { pageId: 1, categoryId: 5 },
+    { pageId: 2, categoryId: 5 },
+    { pageId: 3, categoryId: 4 },
+  ],
+
   likes: [
     { userId: 1, advertId: 1 },
     { userId: 1, advertId: 2 },
