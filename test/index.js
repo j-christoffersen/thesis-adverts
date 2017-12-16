@@ -21,12 +21,19 @@ tape('GET /', (t) => {
 });
 
 tape('GET /adverts', (t) => {
-  const expected = fixtures.adverts.map((adverts, i) => Object.assign(adverts, { id: i + 1 }));
+  const expectedAdvertIndex = 1;
+  const expected = {
+    id: expectedAdvertIndex + 1,
+    body: fixtures.adverts[expectedAdvertIndex].body,
+    advertiserName: fixtures
+      .advertisers[fixtures.adverts[expectedAdvertIndex].advertiserId - 1]
+      .name,
+  };
 
-  axios.get(`${host}/adverts`)
+  axios.get(`${host}/adverts?userId=1`)
     .then((res) => {
       t.equal(res.status, 200, 'should return 200 OK');
-      t.deepEqual(res.data, expected, 'should return all adverts');
+      t.deepEqual(res.data[0], expected, 'should return adverts sorted');
       t.end();
     })
     .catch((err) => {
