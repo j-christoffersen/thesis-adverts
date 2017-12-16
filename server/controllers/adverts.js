@@ -9,9 +9,8 @@ module.exports = {
       .select('categoryId')
       .count('*')
       .from('likes')
-      .join('adverts', { 'likes.advertId': 'adverts.id' })
+      .join('categorizations', { 'categorizations.advertId': 'likes.advertId' })
       .where('likes.userId', '=', req.query.userId)
-      .join('categorizations', { 'categorizations.advertId': 'adverts.id' })
       .groupBy('categorizations.categoryId')
       .as('userWeights');
       // result: users categoriy weights
@@ -23,7 +22,6 @@ module.exports = {
       .from('categorizations')
       .join(userWeights, { 'userWeights.categoryId': 'categorizations.categoryId' })
       .groupBy('advertId')
-      .orderBy('sum', 'desc')
       .as('advertWeights');
 
     bookshelf.knex
@@ -31,6 +29,7 @@ module.exports = {
       .from('adverts')
       .join(advertWeights, { 'adverts.id': 'advertId' })
       .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })
+      .orderBy('sum', 'desc')
 
       .then((result) => {
         res.set(JsonHeaders).send(JSON.stringify(result));
