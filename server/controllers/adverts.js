@@ -1,12 +1,6 @@
 const bookshelf = require('../../database/bookshelf');
 const axios = require('axios');
-const Mock = require('axios-mock-adapter');
-
-const mock = new Mock(axios);
-mock.onGet('/content/users/1/page_likes').reply(200, [
-  { pageId: 1 },
-  { pageId: 2 },
-]);
+require('../mock');
 
 const JsonHeaders = { 'Content-Type': 'application/json' };
 
@@ -20,7 +14,6 @@ module.exports = {
           .select('categoryId')
           .from('pageCategorizations')
           .whereIn('id', pageLikes);
-
 
         const advertLikeCategories = bookshelf.knex
           .select('categoryId')

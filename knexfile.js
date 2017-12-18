@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log(process.env.DB_PASSWORD);
 
 module.exports = {
   development: {
@@ -16,6 +15,22 @@ module.exports = {
       directory: './database/seeds',
     },
     debug: true,
+  },
+
+  'dev-load': {
+    client: 'pg',
+    connection: {
+      database: 'adverts_load',
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+    },
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/load',
+    },
+    debug: false,
   },
 
   test: {
