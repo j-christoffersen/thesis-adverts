@@ -1,8 +1,8 @@
 config:
   target: "http://127.0.0.1:4000"
   phases:
-  - duration: 10
-    arrivalRate: 1
+  - duration: 30
+    arrivalRate: 20
   payload:
     path: users.csv
     fields:
