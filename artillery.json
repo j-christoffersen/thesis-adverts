@@ -1,0 +1,25 @@
+{
+  "config": {
+    "target": "http://127.0.0.1",
+    "phases": [
+      { "duration": 10,
+        "arrival_rate": 1 
+      }
+    ],
+    "payload": {
+      "path": "users.csv",
+      "fields": ["id"]
+    }
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/adverts?userId={{ id }}"
+          }
+        }
+      ]
+    }
+  ]
+}

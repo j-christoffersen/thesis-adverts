@@ -13,7 +13,7 @@ module.exports = {
         const pageLikeCategories = bookshelf.knex
           .select('categoryId')
           .from('pageCategorizations')
-          .whereIn('id', pageLikes);
+          .whereIn('pageId', pageLikes);
 
         const advertLikeCategories = bookshelf.knex
           .select('categoryId')
@@ -43,6 +43,7 @@ module.exports = {
 
         bookshelf.knex
           .select('adverts.id', 'adverts.body', 'advertisers.name as advertiserName')
+          .limit(10)
           .from('adverts')
           .join(advertWeights, { 'adverts.id': 'advertId' })
           .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })
