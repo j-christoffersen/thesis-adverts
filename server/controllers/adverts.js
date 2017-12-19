@@ -43,11 +43,11 @@ module.exports = {
           .as('advertWeights')
           .orderBy('sum', 'desc');
 
-        bookshelf.knex
+        return bookshelf.knex
           .select('adverts.id', 'adverts.body', 'advertisers.name as advertiserName')
           .from('adverts')
           .join(advertWeights, { 'adverts.id': 'advertId' })
-          .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })     
+          .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })
 
           .then((result) => {
             res.set(JsonHeaders).send(JSON.stringify(result));
