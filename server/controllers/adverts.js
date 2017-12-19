@@ -36,18 +36,18 @@ module.exports = {
         const advertWeights = bookshelf.knex
           .select('advertId')
           .sum('userWeights.count')
+          .limit(10)
           .from('categorizations')
           .join(userWeights, { 'userWeights.categoryId': 'categorizations.categoryId' })
           .groupBy('advertId')
-          .as('advertWeights');
+          .as('advertWeights')
+          .orderBy('sum', 'desc');
 
         bookshelf.knex
           .select('adverts.id', 'adverts.body', 'advertisers.name as advertiserName')
-          .limit(10)
           .from('adverts')
           .join(advertWeights, { 'adverts.id': 'advertId' })
-          .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })
-          .orderBy('sum', 'desc')
+          .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })     
 
           .then((result) => {
             res.set(JsonHeaders).send(JSON.stringify(result));
