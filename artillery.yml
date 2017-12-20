@@ -5,11 +5,9 @@ config:
   phases:
   - duration: 30
     arrivalRate: 100
-  payload:
-    path: users.csv
-    fields:
-    - id
+  processor: './artilleryGen.js'
 scenarios:
 - flow:
+  - function: artilleryGen
   - get:
       url: "/adverts?userId={{ id }}"
