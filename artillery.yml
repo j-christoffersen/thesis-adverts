@@ -1,5 +1,7 @@
 config:
   target: "http://127.0.0.1:4000"
+  http:
+    pools: 10
   phases:
   - duration: 30
     arrivalRate: 100

@@ -10,3 +10,5 @@ node_modules/
 workspace/*
 
 newrelic_agent.log
+
+artillery.yml
