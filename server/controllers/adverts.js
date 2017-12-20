@@ -64,7 +64,7 @@ module.exports = {
                 .then((result) => {
                   const resultJson = JSON.stringify(result);
                   res.set(JsonHeaders).send(resultJson);
-                  redisClient.setAsync(req.query.userId, resultJson, 'EX', 10);
+                  redisClient.setAsync(req.query.userId, resultJson, 'EX', 20);
                 });
             })
             .catch((err) => {
