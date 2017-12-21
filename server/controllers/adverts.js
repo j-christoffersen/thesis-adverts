@@ -1,5 +1,6 @@
 const bluebird = require('bluebird');
 const redis = require('redis');
+const newrelic = require('newrelic');
 const model = require('../../database/models');
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
@@ -9,7 +10,7 @@ const { redisUrl } = require('../../redisConfig.js');
 
 const redisClient = redis.createClient(redisUrl);
 
-const REDIS_EXPIRE_TIME = 20;
+const REDIS_EXPIRE_TIME = 10;
 
 module.exports = {
   read: (req, res) => {

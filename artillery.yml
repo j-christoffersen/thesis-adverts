@@ -4,7 +4,7 @@ config:
     pools: 10
   phases:
   - duration: 30
-    arrivalRate: 300
+    arrivalRate: 30
   processor: './artilleryGen.js'
 scenarios:
 - flow:
