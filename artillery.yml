@@ -9,5 +9,7 @@ config:
 scenarios:
 - flow:
   - function: randomUser
+#  - get:
+#      url: "/"
   - get:
       url: "/adverts?userId={{ id }}"

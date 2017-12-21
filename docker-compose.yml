@@ -3,12 +3,13 @@ services:
   web:
     image: jacksontchristo/adverts:v0
     deploy:
-      mode: global
+      replicas: 8
       restart_policy:
         condition: on-failure
     environment:
-      NODE_ENV: test
+      NODE_ENV: docker
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      NEWRELIC_KEY: ${NEWRELIC_KEY}
     ports:
       - "80:80"
     networks:
@@ -26,6 +27,16 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    networks:
+      - webnet
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    command: redis-server
     networks:
       - webnet
 networks:

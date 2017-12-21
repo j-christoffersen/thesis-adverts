@@ -17,6 +17,19 @@ module.exports = {
     debug: true,
   },
 
+  // dev server with docker services
+  'dev-docker': {
+    client: 'pg',
+    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'127.0.0.1'}:${5433}/${'adverts'}`,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',
+    },
+  },
+
+  // dev server with adverts-load db
   'dev-load': {
     client: 'pg',
     connection: {
@@ -33,31 +46,9 @@ module.exports = {
     debug: false,
   },
 
-  test: {
+  docker: {
     client: 'pg',
     connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'postgres'}:${5432}/${'adverts'}`,
-    migrations: {
-      directory: './database/migrations',
-    },
-    seeds: {
-      directory: './database/seeds',
-    },
-  },
-
-  travis: {
-    client: 'pg',
-    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'127.0.0.1'}:${5432}/${'adverts'}`,
-    migrations: {
-      directory: './database/migrations',
-    },
-    seeds: {
-      directory: './database/seeds',
-    },
-  },
-
-  'dev-test': {
-    client: 'pg',
-    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'127.0.0.1'}:${5433}/${'adverts'}`,
     migrations: {
       directory: './database/migrations',
     },
