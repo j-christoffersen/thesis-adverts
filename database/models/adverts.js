@@ -63,12 +63,10 @@ module.exports = Object.assign(bookshelf.model('Advert', Advert), {
           .from('adverts')
           .join(advertWeights, { 'adverts.id': 'advertId' })
           .join('advertisers', { 'advertisers.id': 'adverts.advertiserId' })
-          .orderBy('sum', 'desc');
+          .orderBy('sum', 'desc')
 
-        // return bookshelf.knex
-        //   .select('categoryId')
-        //   .from('pageCategorizations')
-        //   .whereIn('pageId', pageLikes);
+          // for newrelic
+          .then(x => Promise.resolve(x));
       });
   },
 });
