@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+console.log(process.env.DB_PASSWORD);
 module.exports = {
   development: {
     client: 'pg',
@@ -25,7 +26,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/seeds',
+      directory: './database/load',
     },
   },
 
@@ -48,12 +49,23 @@ module.exports = {
 
   docker: {
     client: 'pg',
-    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'postgres'}:${5432}/${'adverts'}`,
+    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'postgres'}:${5432}/${process.env.POSTGRES_DB || 'adverts'}`,
     migrations: {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/seeds',
+      directory: './database/load',
+    },
+  },
+
+  'prod-load': {
+    client: 'pg',
+    connection: `postgres://${'postgres'}:${process.env.POSTGRES_PASSWORD}@${'13.56.191.61'}:${5432}/${'adverts'}`,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/load',
     },
   },
 };

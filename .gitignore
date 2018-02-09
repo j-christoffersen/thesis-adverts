@@ -10,3 +10,6 @@ node_modules/
 workspace/*
 
 newrelic_agent.log
+
+data/*
+postgres/data/*

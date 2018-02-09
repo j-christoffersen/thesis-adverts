@@ -12,12 +12,14 @@ exports.seed = (knex) => {
       name: 'advertisers',
       count: 1000000,
       foreignKeys: [],
+      indexes: [],
       fake: () => ({ name: faker.company.companyName() }),
     },
     {
       name: 'adverts',
       count: 3000000,
       foreignKeys: [['advertiser', 'advertisers']],
+      indexes: [],
       fake: () => ({
         body: faker.lorem.sentences(),
         advertiserId: faker.random.number({
@@ -30,6 +32,7 @@ exports.seed = (knex) => {
       name: 'categories',
       count: 10000,
       foreignKeys: [],
+      indexes: [],
       fake: () => ({
         name: faker.random.word(),
       }),
@@ -38,6 +41,7 @@ exports.seed = (knex) => {
       name: 'categorizations',
       count: 5000000,
       foreignKeys: [['advert', 'adverts'], ['category', 'categories']],
+      indexes: ['categoryId', 'advertId'],
       fake: () => ({
         categoryId: faker.random.number({
           min: 1,
@@ -59,6 +63,7 @@ exports.seed = (knex) => {
       name: 'likes',
       count: 5000000,
       foreignKeys: [['advert', 'adverts']],
+      indexes: ['userId'],
       fake: () => ({
         userId: faker.random.number({ min: 1, max: USERS }),
         advertId: faker.random.number({
@@ -71,6 +76,7 @@ exports.seed = (knex) => {
       name: 'pageCategorizations',
       count: Math.floor(1.5 * PAGES),
       foreignKeys: [['category', 'categories']],
+      indexes: ['pageId'],
       fake: () => ({
         pageId: faker.random.number({ min: 1, max: PAGES }),
         categoryId: faker.random.number({
@@ -101,6 +107,9 @@ exports.seed = (knex) => {
       table.foreignKeys.forEach((foreignKey) => {
         t.dropForeign(`${foreignKey[0]}Id`);
       });
+      table.indexes.forEach((index) => {
+        t.dropIndex(index);
+      });
     }));
 
 
@@ -122,6 +131,9 @@ exports.seed = (knex) => {
     inserts.push(() => knex.schema.table(table.name, (t) => {
       table.foreignKeys.forEach((foreignKey) => {
         t.foreign(`${foreignKey[0]}Id`).references(`${foreignKey[1]}.id`).onDelete('CASCADE');
+      });
+      table.indexes.forEach((index) => {
+        t.index(index);
       });
     }));
   });

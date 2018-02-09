@@ -1,15 +1,18 @@
 config:
   target: "http://127.0.0.1:80"
   http:
-    pools: 10
+    pools: 1000
   phases:
-  - duration: 30
-    arrivalRate: 1000
+  - duration: 10
+    arrivalRate: 10
+    rampTo: 10
+  - duration: 10
+    arrivalRate: 10
   processor: './artilleryGen.js'
 scenarios:
 - flow:
   - function: randomUser
-  - get:
-      url: "/"
 #  - get:
-#      url: "/adverts?userId={{ id }}"
+#      url: "/"
+  - get:
+      url: "/adverts?userId={{ id }}"
