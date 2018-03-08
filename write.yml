@@ -1,0 +1,15 @@
+config:
+  target: "http://127.0.0.1:3000"
+#  http:
+#    pools: 1000
+  phases:
+  - duration: 10
+    arrivalRate: 300
+  processor: './artilleryGen.js'
+scenarios:
+- flow:
+  - function: randomUser
+  - post:
+      url: "/adverts/{{ advertId }}/likes"
+      json:
+        userId: "1"

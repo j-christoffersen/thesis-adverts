@@ -1,13 +1,13 @@
 config:
-  target: "http://127.0.0.1:80"
+  target: "http://127.0.0.1:3000"
   http:
     pools: 1000
   phases:
-  - duration: 10
-    arrivalRate: 10
-    rampTo: 10
-  - duration: 10
-    arrivalRate: 10
+  - duration: 1
+    arrivalRate: 1
+#    rampTo: 10
+#  - duration: 10
+#    arrivalRate: 10
   processor: './artilleryGen.js'
 scenarios:
 - flow:

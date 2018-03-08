@@ -11,6 +11,12 @@ const service = express();
 
 service.use(bodyParser.json());
 
+// //debugging
+// service.use((req, res, next) => {
+//   console.log(req.body);
+//   next();
+// })
+
 service.route('/')
   .get((req, res) => {
     res.send('sah, world');
