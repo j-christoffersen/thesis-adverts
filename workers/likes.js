@@ -10,7 +10,14 @@ const model = require('../database/models');
 
 new cron.CronJob('*/10 * * * * *', () => {
   let receiptHandle;
-  got('https://sqs.us-west-1.amazonaws.com/952037103357/adverts-likes/?Action=ReceiveMessage&MaxNumberOfMessages=5&Version=2012-11-05')
+
+  const query = qs.stringify({
+    Action: 'ReceiveMessage',
+    MaxNumberOfMessages: '10',
+    Version: '2012-11-05',
+  });
+
+  got(`https://sqs.us-west-1.amazonaws.com/952037103357/adverts-likes/?${query}`)
     .then(response => parseString(response.body))
     .then((data) => {
       if (
@@ -55,7 +62,15 @@ new cron.CronJob('*/10 * * * * *', () => {
       }
 
       return writeToDB
-        .then(() => got(`https://sqs.us-west-1.amazonaws.com/952037103357/adverts-likes/?Action=DeleteMessage&Version=2012-11-05&ReceiptHandle=${qs.escape(receiptHandle)}`));
+        .then(() => {
+          const writeQuery = qs.stringify({
+            Action: 'DeleteMessage',
+            Version: '2012-11-05',
+            ReceiptHandle: qs.escape(receiptHandle),
+          });
+
+          return got(`https://sqs.us-west-1.amazonaws.com/952037103357/adverts-likes/?${writeQuery}`);
+        });
     })
     .then(() => {
       console.log('done');
