@@ -9,4 +9,8 @@ const Like = bookshelf.Model.extend({
   },
 });
 
-module.exports = bookshelf.model('Like', Like);
+module.exports = Object.assign(bookshelf.model('Like', Like), {
+  create: (like) => {
+    return bookshelf.knex('likes').insert(like);
+  },
+});
