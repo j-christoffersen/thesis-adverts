@@ -7,7 +7,7 @@ function randomRange(beg, end) {
 
 const pushes = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 500; i++) {
   const query = qs.stringify({
     Action: 'SendMessage',
     Version: '2012-11-05',
