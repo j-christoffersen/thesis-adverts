@@ -7,9 +7,12 @@ node_modules/
 # API keys
 *.pem
 
+# folder for local concept testing
 workspace/*
 
+# logs
 newrelic_agent.log
 
+# data volumes
 data/*
 postgres/data/*
