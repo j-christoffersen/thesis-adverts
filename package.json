@@ -10,7 +10,9 @@
     "server-dev": "nodemon server/index.js",
     "start": "node server/index.js",
     "test": "node ./test",
-    "poll": "node ./workers/likes.js"
+    "poll": "node ./workers/likes.js",
+    "artillery:read": "artillery run loadTest/read.yml",
+    "artillery:load": "artillery run loadTest/load.yml"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/j-christoffersen/thesis-adverts#readme",
   "devDependencies": {
+    "artillery": "^1.6.0-14",
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
