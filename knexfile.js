@@ -12,7 +12,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/seeds',
+      directory: './database/seeds/dummy',
     },
     debug: true,
   },
@@ -25,7 +25,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/load',
+      directory: './database/seeds/load',
     },
   },
 
@@ -41,7 +41,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/load',
+      directory: './database/seeds/load',
     },
     debug: false,
   },
@@ -53,7 +53,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/load',
+      directory: './database/seeds/load',
     },
   },
 
@@ -64,7 +64,7 @@ module.exports = {
       directory: './database/migrations',
     },
     seeds: {
-      directory: './database/load',
+      directory: './database/seeds/load',
     },
   },
 };
