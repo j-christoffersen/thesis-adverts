@@ -1,6 +1,6 @@
 # Thesis - Advertisements Service
 
-The project description
+A microservice designed to generate a set of recommended ads for a user, part of a larger Facebook clone
 
 ## App Plan
 
@@ -16,10 +16,10 @@ View the project roadmap [here](https://docs.google.com/document/d/1Y5DxePG6nQ6J
 
 ## Usage
 
-> Some usage instructions
+> To initialize the database, create an empty DB named 'adverts' and run ```npm run db:setup```
+> To run the service locally, simply run ```npm start```
 
 ## Requirements
 
-- Node
+- Node 9.2.1
 
-## Other Information

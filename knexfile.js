@@ -43,7 +43,7 @@ module.exports = {
     seeds: {
       directory: './database/seeds/load',
     },
-    debug: false,
+    debug: true,
   },
 
   docker: {
